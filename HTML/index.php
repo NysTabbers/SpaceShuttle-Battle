@@ -3,19 +3,26 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once("../PHP/spaceship.php");
+require_once("../PHP/spaceship.php"); 
 
-$canon = new weapon("Death Canon", 10, 35, 10, 10, 10);
-$Spaceship = new spaceship("Humanitus Invictus", 10, 5, 100, 50, 75, $canon);
+$canon = new weapon("Death Canon", 3, 35, 1000, 10, 25);
+$Spaceship = new spaceship("Humanitus Invictus", 10, 5, 100, 75, 50,$canon);
 
-echo ("\n{$Spaceship->getInfo()}");
-
-$Spaceship->__setName("voorbeeld");
-
+//ship stats
 echo ("\n{$Spaceship->getName()}");
+echo ("\n{$Spaceship->getLength()}");
+echo ("\n{$Spaceship->getWidth()}");
+echo ("\n{$Spaceship->getHP()}");
+echo ("\n{$Spaceship->getGas()}");
+echo ("\n{$Spaceship->getShield()}"); 
 
-$Spaceship->weapons->getInfo();
+echo "<br>";
 
-
-
+//weapon stats
+echo ("\n{$Spaceship->weapons->getName()}");
+echo ("\n{$Spaceship->weapons->getFirepower()}");
+echo ("\n{$Spaceship->weapons->getAttackDamage()}");
+echo ("\n{$Spaceship->weapons->getRange()}");
+echo ("\n{$Spaceship->weapons->getAmmo()}");
+echo ("\n{$Spaceship->weapons->getCooldown()}");
 ?>

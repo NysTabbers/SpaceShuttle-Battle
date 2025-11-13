@@ -24,12 +24,27 @@ class spaceship
     {
         return $this->name;
     }
-
-    public function getInfo(): string
+    public function getLength(): int
     {
-        $info = "\n $this->length" . "\n $this->width" . "\n $this->hp" . "\n $this->gas" . "\n $this->shield";
-        return $info;
+        return $this->length;
     }
+    public function getWidth(): int
+    {
+        return $this->width;
+    }
+    public function getHP(): int
+    {
+        return $this->hp;
+    }
+    public function getGas(): int
+    {
+        return $this->gas;
+    }
+    public function getShield(): int
+    {
+        return $this->shield;
+    }
+
 
     public function __setName(string $name): void
     {
@@ -60,10 +75,57 @@ class weapon
     {
         return $this->name;
     }
-
-    public function getInfo(): string
+    public function getFirepower(): int
     {
-        $info = "\n $this->firepower" . "\n $this->attackDamage" . "\n $this->ammo" . "\n $this->cooldown";
-        return $info;
+        return $this->firepower;
+    }
+    public function getAttackDamage(): int
+    {
+        return $this->attackDamage;
+    }
+    public function getRange(): int
+    {
+        return $this->range;
+    }
+    public function getAmmo(): int
+    {
+        return $this->ammo;
+    }
+    public function getCooldown(): int
+    {
+        return $this->cooldown;
+    }
+}
+
+class engine
+{
+    public string $name;
+    public int $speed;
+    public int $accelaration;
+    public string $type;
+
+    public function __construct(string $name, int $speed, int $accelaration, string $type)
+    {
+        $this->name = $name;
+        $this->speed = $speed;
+        $this->accelaration = $accelaration;
+        $this->$type = $type;
+    }
+
+        public function getName(): string
+    {
+        return $this->name;
+    }
+    public function getSpeed(): int
+    {
+        return $this->speed;
+    }
+    public function getAccelaration(): int
+    {
+        return $this->accelaration;
+    }
+    public function getType(): string
+    {
+        return $this->type;
     }
 }
