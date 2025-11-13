@@ -8,7 +8,8 @@ class spaceship
     public int $gas;
     public int $shield;
     public weapon $weapons;
-    public function __construct(string $name, int $length, int $width, int $hp, int $gas, int $shield, weapon $weapons)
+    public engine $engine;
+    public function __construct(string $name, int $length, int $width, int $hp, int $gas, int $shield, weapon $weapons, engine $engine)
     {
         $this->name = $name;
         $this->length = $length;
@@ -17,8 +18,8 @@ class spaceship
         $this->gas = $gas;
         $this->shield = $shield;
         $this->weapons = $weapons;
+        $this->engine = $engine;
     }
-
 
     public function getName(): string
     {
@@ -56,15 +57,17 @@ class weapon
 {
     public string $name;
     public int $firepower;
+    public int $hitChance;
     public int $attackDamage;
     public int $range;
     public int $ammo;
     public int $cooldown;
 
-    public function __construct(string $name, int $firepower, int $attackDamage, int $range, int $ammo, int $cooldown)
+    public function __construct(string $name, int $firepower, int $hitChance,int $attackDamage, int $range, int $ammo, int $cooldown)
     {
         $this->name = $name;
         $this->firepower = $firepower;
+        $this->hitChance = $hitChance;
         $this->attackDamage = $attackDamage;
         $this->range = $range;
         $this->ammo = $ammo;
@@ -78,6 +81,10 @@ class weapon
     public function getFirepower(): int
     {
         return $this->firepower;
+    }
+        public function getHitChance(): int
+    {
+        return $this->hitChance;
     }
     public function getAttackDamage(): int
     {
@@ -102,14 +109,12 @@ class engine
     public string $name;
     public int $speed;
     public int $accelaration;
-    public string $type;
 
-    public function __construct(string $name, int $speed, int $accelaration, string $type)
+    public function __construct(string $name, int $speed, int $accelaration)
     {
         $this->name = $name;
         $this->speed = $speed;
         $this->accelaration = $accelaration;
-        $this->$type = $type;
     }
 
         public function getName(): string
@@ -123,9 +128,5 @@ class engine
     public function getAccelaration(): int
     {
         return $this->accelaration;
-    }
-    public function getType(): string
-    {
-        return $this->type;
     }
 }
