@@ -1,0 +1,68 @@
+body {
+  background: radial-gradient(ellipse at 50% 20%, #071022 0%, #02030a 50%, #000 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 600px at 50% 10%, rgba(8,18,32,0.35), rgba(0,0,0,0.55));
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: normal;
+}
+
+/* static star layer (small dots using multiple radial-gradients) */
+body::after{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 4% 10%, #ffffff 90%, transparent 91%),
+    radial-gradient(1.5px 1.5px at 8% 70%, #f8f9ff 90%, transparent 91%),
+    radial-gradient(1.2px 1.2px at 12% 34%, #fff 90%, transparent 91%),
+    radial-gradient(1px 1px at 18% 18%, #fff 90%, transparent 91%),
+    radial-gradient(1.6px 1.6px at 25% 60%, #f0f8ff 90%, transparent 91%),
+    radial-gradient(1.2px 1.2px at 33% 26%, #fff 90%, transparent 91%),
+    radial-gradient(1px 1px at 41% 84%, #fff 90%, transparent 91%),
+    radial-gradient(1.8px 1.8px at 50% 40%, #ffffff 90%, transparent 91%),
+    radial-gradient(1px 1px at 61% 12%, #fff 90%, transparent 91%),
+    radial-gradient(1.3px 1.3px at 70% 55%, #fff 90%, transparent 91%),
+    radial-gradient(1px 1px at 78% 28%, #fff 90%, transparent 91%),
+    radial-gradient(1.5px 1.5px at 86% 76%, #fff 90%, transparent 91%),
+    radial-gradient(1px 1px at 92% 42%, #fff 90%, transparent 91%);
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.95;
+  mix-blend-mode: screen;
+}
+.wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.battle-log{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 2;
+}
+
+h1{
+    font-size: 40px;
+    color: white;
+}
+
+p{
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
