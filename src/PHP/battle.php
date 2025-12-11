@@ -17,7 +17,11 @@ if (!isset($spaceship) || !isset($spaceship2)) {
 function shipAmmoRemaining($ship)
 {
     // Geeft terug hoeveel munitie een schip nog heeft
-    return $ship->weapons->getAmmo();
+    $totalAmmo = 0;
+    foreach ($ship->weapons as $weapon) {
+        $totalAmmo += $weapon->getAmmo();
+    }
+    return $totalAmmo;
 }
 
 function battleDone($spaceship, $spaceship2)
@@ -86,26 +90,27 @@ $defender = $spaceship2;
 // Hoofdgevechtslus
 while (battleDone($spaceship, $spaceship2)) {
 
-    $weapons = $attacker->weapons;    // Verkrijg wapenobject van het aanvallende schip
-    $weaponName = $weapons->getName(); // Naam van het wapen (nog niet gebruikt)
-    $ammo = $weapons->getAmmo();       // Huidige hoeveelheid munitie
+    foreach ($attacker->weapons as $weapon) {
+        // check ammo
+        $currentAmmo = $weapon->getAmmo();
 
-    // Als geen munitie → beurt overslaan
-    if ($ammo <= 0) {
-        echo $attacker->getName() . " is out of ammo" . "<br>";
-    } else {
-        // Gebruik één munitiepunt
-        $attacker->weapons->ammo = $ammo - 1;
+        if ($currentAmmo <= 0) {
+            echo $attacker->getName() . " tried to fire " . $weapon->getName() . " but it's out of ammo.<br>";
+            continue;
+        }
+        
+        // Haal ammo weg wanneer raakgeschoten
+        $weapon->ammo = $currentAmmo - 1;
 
-        if (hitChance($attacker, $weapons)) {
+        if (hitChance($attacker, $weapon)) {
             // Aanval raakt
-            $damage = $weapons->getAttackDamage(); // Basis schade
-            echo "  -> HIT! " . $attacker->getName() . " deals " . $damage . " damage." . "<br>";
+            $damage = $weapon->getAttackDamage(); // Basis schade
+            echo "  -> HIT! " . $attacker->getName() . " deals " . $damage . " damage with " . $weapon->getName() . "." . "<br>";
 
             damageToDefender($defender, $damage);
         } else {
             // Aanval mist
-            echo "  -> MISS! " . $attacker->getName() . " did not hit." . "<br>";
+            echo "  -> MISS! " . $attacker->getName() . " weapon " . $weapon->getName() . " did not hit." . "<br>";
         }
     }
 

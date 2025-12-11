@@ -1,4 +1,9 @@
 <?php
+
+require_once("../Interfaces/Iweapon.php");
+
+use Interfaces\Iweapon;
+
 class spaceship
 {
     public string $name;
@@ -7,9 +12,9 @@ class spaceship
     public int $hp;
     public int $gas;
     public int $shield;
-    public weapon $weapons;
+    public array $weapons;
     public engine $engine;
-    public function __construct(string $name, int $length, int $width, int $hp, int $gas, int $shield, weapon $weapons, engine $engine)
+    public function __construct(string $name, int $length, int $width, int $hp, int $gas, int $shield, array $weapons, engine $engine)
     {
         $this->name = $name;
         $this->length = $length;
@@ -45,15 +50,13 @@ class spaceship
     {
         return $this->shield;
     }
-
-
     public function __setName(string $name): void
     {
         $this->name = $name;
     }
 }
 
-class weapon
+class weapon implements Iweapon
 {
     public string $name;
     public int $firepower;

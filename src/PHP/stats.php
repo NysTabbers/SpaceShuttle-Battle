@@ -16,8 +16,8 @@ $engine2 = new engine("TR-07", 65, 20);
 $engine3 = new engine("HE-01", 30, 10);
 
 //spaceship stats
-$spaceship = new spaceship("Humanitus Invictus", 125, 50, 250, 150, 100, $laser, $engine);
-$spaceship2 = new spaceship("Deystroyer", 150, 100, 250, 150, 100, $canon, $engine2);
-$spaceship3 = new spaceship("Galacticus", 500, 375, 350, 150,  100, $superWeapon, $engine3);
+$spaceship = new spaceship("Humanitus Invictus", 125, 50, 250, 150, 100, [$laser, $canon], $engine);
+$spaceship2 = new spaceship("Deystroyer", 150, 100, 250, 150, 100, [$canon, $laser], $engine2);
+$spaceship3 = new spaceship("Galacticus", 500, 375, 350, 150,  100, [$superWeapon, $canon], $engine3);
 
 ?>
