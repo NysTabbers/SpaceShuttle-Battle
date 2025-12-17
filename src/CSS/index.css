@@ -65,3 +65,21 @@ p{
     text-align: center;
     color: white;
 }
+
+button {
+    padding: 12px 30px;
+    font-size: 18px;
+    color: white;
+    background: rgba(10, 20, 40, 0.7);
+    border: 2px solid #ffffff55;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+button:hover {
+    background: rgba(30, 50, 90, 0.8);
+    border-color: #ffffffaa;
+    transform: scale(1.05);
+}

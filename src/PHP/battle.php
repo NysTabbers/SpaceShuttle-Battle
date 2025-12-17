@@ -1,8 +1,5 @@
 <?php
 
-session_start();
-// Start een nieuwe sessie of hervat een bestaande sessie (nodig om data tussen pagina's te bewaren)
-
 require_once("spaceship.php");
 require_once("stats.php");
 // Laad de definities van ruimteschepen en hun stats
