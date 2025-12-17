@@ -1,10 +1,14 @@
 <?php
 
 require_once("../Interfaces/Iweapon.php");
+require_once("../Interfaces/Ispaceship.php");
+require_once("../Interfaces/Iengine.php");
 
 use Interfaces\Iweapon;
+use Interfaces\Iengine;
+use Interfaces\Ispaceship;
 
-class spaceship
+class spaceship implements Ispaceship
 {
     public string $name;
     public int $length;
@@ -66,7 +70,7 @@ class weapon implements Iweapon
     public int $ammo;
     public int $cooldown;
 
-    public function __construct(string $name, int $firepower, int $hitChance,int $attackDamage, int $range, int $ammo, int $cooldown)
+    public function __construct(string $name, int $firepower, int $hitChance, int $attackDamage, int $range, int $ammo, int $cooldown)
     {
         $this->name = $name;
         $this->firepower = $firepower;
@@ -85,7 +89,7 @@ class weapon implements Iweapon
     {
         return $this->firepower;
     }
-        public function getHitChance(): int
+    public function getHitChance(): int
     {
         return $this->hitChance;
     }
@@ -107,7 +111,7 @@ class weapon implements Iweapon
     }
 }
 
-class engine
+class engine implements Iengine
 {
     public string $name;
     public int $speed;
@@ -120,7 +124,7 @@ class engine
         $this->accelaration = $accelaration;
     }
 
-        public function getName(): string
+    public function getName(): string
     {
         return $this->name;
     }
