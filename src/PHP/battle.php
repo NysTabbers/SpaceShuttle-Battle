@@ -35,6 +35,17 @@ function battleDone($spaceship, $spaceship2)
     return true;
 }
 
+function shipOutOfAmmo($weapon, $attacker) {
+    if ($weapon->getAmmo() <= 0) {
+        echo $attacker->getName() . " has no ammo for " . $weapon->getName() . " and cannot attack.<br>";
+        return false; // weapon cannot fire
+    }
+
+    // Reduce ammo by 1 because it will be fired
+    $weapon->ammo = $weapon->getAmmo() - 1;
+    return true; // weapon can fire
+}
+
 // Function of de aanval raakt
 function hitChance($attacker, $weapons)
 {
@@ -91,13 +102,10 @@ while (battleDone($spaceship, $spaceship2)) {
         // check ammo
         $currentAmmo = $weapon->getAmmo();
 
-        if ($currentAmmo <= 0) {
-            echo $attacker->getName() . " tried to fire " . $weapon->getName() . " but it's out of ammo.<br>";
-            continue;
+                // Call the function and check if the weapon can fire
+        if (!shipOutOfAmmo($weapon, $attacker)) {
+            continue; // skip this weapon, but loop continues for other weapons
         }
-        
-        // Haal ammo weg wanneer raakgeschoten
-        $weapon->ammo = $currentAmmo - 1;
 
         if (hitChance($attacker, $weapon)) {
             // Aanval raakt

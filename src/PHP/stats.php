@@ -1,13 +1,14 @@
 <?php
 
+// Laad de spaceship, weapon en engine classes
+require_once("../PHP/spaceship.php");
+
 session_start();
 
 // Zet alle PHP foutmeldingen aan
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Laad de spaceship, weapon en engine classes
-require_once("../PHP/spaceship.php");
 
 // ====================
 // Weapon stats

@@ -24,10 +24,8 @@ $battleLog = ob_get_clean();
 
 <head>
     <meta charset="UTF-8">
-    <!-- Zorgt voor correcte weergave op verschillende schermgroottes -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle View</title>
-    <!-- CSS bestand voor styling -->
     <link rel="stylesheet" href="../CSS/index.css">
 </head>
 
@@ -41,17 +39,9 @@ $battleLog = ob_get_clean();
                 <!-- Toon de battle log output -->
                 <?php echo $battleLog ?>
             </p>
-            <a href="../db/dbWeapons.php"><button class="button">Send weapon stats to database</button></a>
+            <a href="sendToDB.php"><button class="button">Go to page to send data of weapons to database</button></a>
         </div>
     </div>
 </body>
 
 </html>
-
-<?php
-
-if($_SESSION["error"] === true){
-    echo "<div class='error'><h1>Failed</h1> <p>Weapons where empty. Please try again or contact developer</p></div>";
-}
-
-?>
