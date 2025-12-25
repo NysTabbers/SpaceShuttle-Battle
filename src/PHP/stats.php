@@ -38,15 +38,21 @@ $engine2 = new engine("TR-07", 65, 20);
 // Langzame motor met lage acceleratie
 $engine3 = new engine("HE-01", 30, 10);
 
+$armory = new armory("armory", 20, 50, 250, 3);
+
+$armory2 = new armory("armory", 40, 75, 350, 4);
+
+$armory3 = new armory("armory", 80, 125, 600, 5);
+
 // ====================
 // Spaceship stats
 // ====================
 
 // Menselijk ruimteschip met gebalanceerde stats
-$spaceship = new spaceship("Humanitus Invictus", 125, 50, 250, 150, 100, [$laser, $canon], $engine);
+$spaceship = new spaceship("Humanitus Invictus", 125, 50, 250, 150, 100, [$laser, $canon], $engine, $armory);
 
 // Vijandelijk schip met andere motor en wapenvolgorde
-$spaceship2 = new spaceship("Deystroyer", 150, 100, 250, 150, 100, [$canon, $laser], $engine2);
+$spaceship2 = new spaceship("Deystroyer", 150, 100, 250, 150, 100, [$canon, $laser], $engine2, $armory);
 
 // Groot eindbaas-schip met superwapen
-$spaceship3 = new spaceship("Galacticus", 500, 375, 350, 150,  100, [$superWeapon, $canon], $engine3);
+$spaceship3 = new spaceship("Galacticus", 500, 375, 350, 150,  100, [$superWeapon, $canon], $engine3, $armory2);

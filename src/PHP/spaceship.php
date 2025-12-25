@@ -9,6 +9,8 @@ require_once("../Interfaces/Iengine.php");
 use Interfaces\Iweapon;
 use Interfaces\Iengine;
 use Interfaces\Ispaceship;
+use Interfaces\Iroom;
+use Interfaces\Iarmory;
 
 // Spaceship class die Ispaceship interface implementeert
 class spaceship implements Ispaceship
@@ -21,9 +23,10 @@ class spaceship implements Ispaceship
     public int $shield;       // Schildsterkte
     public array $weapons;    // Wapens aan boord
     public engine $engine;    // Motor van het schip
+    public armory $armory;
 
     // Constructor om een spaceship aan te maken
-    public function __construct(string $name, int $length, int $width, int $hp, int $gas, int $shield, array $weapons, engine $engine)
+    public function __construct(string $name, int $length, int $width, int $hp, int $gas, int $shield, array $weapons, engine $engine, armory $armory)
     {
         $this->name = $name;
         $this->length = $length;
@@ -33,6 +36,7 @@ class spaceship implements Ispaceship
         $this->shield = $shield;
         $this->weapons = $weapons;
         $this->engine = $engine;
+        $this->armory = $armory;
     }
 
     // Geeft de naam van het spaceship terug
@@ -175,5 +179,57 @@ class engine implements Iengine
     public function getAccelaration(): int
     {
         return $this->accelaration;
+    }
+}
+
+class room implements Iroom
+{
+    public string $name;
+    public int $size;
+    public int $hp;
+    public function __construct(string $name, int $size, int $hp)
+    {
+        $this->name = $name;
+        $this->size = $size;
+        $this->hp = $hp;
+    }
+    // Geeft de naam terug
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    // Geeft hp terug
+    public function getSize(): int
+    {
+        return $this->size;
+    }
+    // Geeft de groote terug
+    public function getHp(): int
+    {
+        return $this->hp;
+    }
+}
+
+class armory extends room
+{
+    public int $ammoAmount;
+    public int $weaponCount;
+    public function __construct(string $name, int $size, int $hp, int $ammoAmount, int $weaponCount)
+    {
+        $this->name = $name;
+        $this->size = $size;
+        $this->hp = $hp;
+        $this->ammoAmount = $ammoAmount;
+        $this->weaponCount = $weaponCount;
+    }
+    // Geeft de naam terug
+    public function getAmmoAmount(): string
+    {
+        return $this->ammoAmount;
+    }
+    // Geeft hp terug
+    public function getWeaponCount(): int
+    {
+        return $this->weaponCount;
     }
 }
