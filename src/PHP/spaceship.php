@@ -210,7 +210,7 @@ class room implements Iroom
     }
 }
 
-class armory extends room
+class armory extends room implements Iarmory
 {
     public int $ammoAmount;
     public int $weaponCount;
