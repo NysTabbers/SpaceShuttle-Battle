@@ -4,6 +4,8 @@
 require_once("../Interfaces/Iweapon.php");
 require_once("../Interfaces/Ispaceship.php");
 require_once("../Interfaces/Iengine.php");
+require_once("../Interfaces/Iroom.php");
+require_once("../Interfaces/Iarmory.php");
 
 // Interfaces gebruiken
 use Interfaces\Iweapon;
