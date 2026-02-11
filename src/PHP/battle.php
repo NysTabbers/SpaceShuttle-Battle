@@ -2,14 +2,35 @@
 
 require_once("spaceship.php");
 require_once("stats.php");
-// Laad de definities van ruimteschepen en hun stats
-
-// Check of beide ruimteschepen zijn ingesteld
-if (!isset($spaceship) || !isset($spaceship2)) {
-    $error = "Spaceships aren't set. Go to stats.php to set the stats";
-    die($error);
-    // Stop script als stats ontbreken
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
 }
+
+// Laad alle available ships in an array
+$allShips = [];
+if (isset($spaceship)) $allShips[] = $spaceship;
+if (isset($spaceship2)) $allShips[] = $spaceship2;
+if (isset($spaceship3)) $allShips[] = $spaceship3;
+
+if (count($allShips) < 2) {
+    $error = "Not enough ships defined in stats.php";
+    die($error);
+}
+
+// Determine player selection from session (default to first ship)
+$playerIndex = isset($_SESSION['selected_ship_index']) ? intval($_SESSION['selected_ship_index']) : 0;
+if ($playerIndex < 0 || $playerIndex >= count($allShips)) $playerIndex = 0;
+
+// choose enemy as the first ship that's not the player
+$enemyIndex = 0;
+for ($i = 0; $i < count($allShips); $i++) {
+    if ($i !== $playerIndex) { $enemyIndex = $i; break; }
+}
+
+$playerShip = $allShips[$playerIndex];
+$enemyShip = $allShips[$enemyIndex];
+
+echo "Battle: " . $playerShip->getName() . " (player) vs " . $enemyShip->getName() . " (enemy)" . "<br>";
 
 function shipAmmoRemaining($ship)
 {
@@ -21,14 +42,14 @@ function shipAmmoRemaining($ship)
     return $totalAmmo;
 }
 
-function battleDone($spaceship, $spaceship2)
+function battleDone($a, $b)
 {
     // Stop als een van de schepen geen HP meer heeft
-    if ($spaceship->getHP() <= 0 || $spaceship2->getHP() <= 0) {
+    if ($a->getHP() <= 0 || $b->getHP() <= 0) {
         return false;  // Battle stopt
     }
     // Stop als beide schepen geen munitie meer hebben
-    if (shipAmmoRemaining($spaceship) <= 0 && shipAmmoRemaining($spaceship2) <= 0) {
+    if (shipAmmoRemaining($a) <= 0 && shipAmmoRemaining($b) <= 0) {
         return false;  // Battle stopt
     }
     // Anders battle gaat door
@@ -92,11 +113,11 @@ function reverseRolls(&$attacker, &$defender)
 
 
 // Stelt aanvaller en verdediger in voor de eerste ronde
-$attacker = $spaceship;
-$defender = $spaceship2;
+$attacker = $playerShip;
+$defender = $enemyShip;
 
 // Hoofdgevechtslus
-while (battleDone($spaceship, $spaceship2)) {
+while (battleDone($attacker, $defender)) {
 
     foreach ($attacker->weapons as $weapon) {
         // check ammo

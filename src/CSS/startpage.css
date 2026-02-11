@@ -1,0 +1,114 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+  background: radial-gradient(ellipse at 50% 20%, #071022 0%, #02030a 50%, #000 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before{
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(1200px 600px at 50% 10%, rgba(8,18,32,0.35), rgba(0,0,0,0.55));
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: normal;
+}
+
+
+.grid {
+    display: grid;
+    column-gap: 10px;
+    row-gap: 10px;
+    width: auto;
+    height: auto;
+    grid-template-columns: repeat(10, auto);
+    justify-items: center;
+    align-items: center;
+    border: none;
+    z-index: 1;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+/* selected thumbnail */
+.grid img.selected {
+  outline: 3px solid #4ee6a6;
+  transform: scale(1.03);
+}
+
+/* modal backdrop (blurred background) */
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  z-index: 3;
+}
+
+.modal-backdrop.active {
+  display: block;
+}
+
+/* details panel - centered modal */
+.ship-details {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  background: rgba(10,14,20,0.95);
+  color: #e6eef6;
+  padding: 20px;
+  border-radius: 12px;
+  z-index: 4;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  font-size: 13px;
+  border: 1px solid rgba(78, 230, 166, 0.2);
+}
+
+.ship-details.active {
+  display: block;
+}
+
+#details-title { margin-top: 0; margin-bottom: 12px; }
+#details-content { margin: 12px 0; line-height: 1.5; }
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #e6eef6;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  color: #4ee6a6;
+}
+
+#confirm-selection { background:#2da77a; color:#fff; border:none; padding:8px 12px; border-radius:4px; cursor:pointer; margin-top:12px; width:100%; }
+#confirm-selection:disabled { opacity:0.5; cursor:not-allowed; }
